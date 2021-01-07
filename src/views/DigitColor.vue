@@ -7,7 +7,7 @@
       <p class="font-semibold">Challenge:</p>
       <ul class="ml-10 list-inside list-disc">
         <li>All <span class="italic">even numbers</span> should have a yellow background.</li>
-        <li>All <span class="italic">power of 2 numbers</span> should have a blue background.</li>
+        <li>All <span class="italic">numbers n^2</span> should have a blue background.</li>
         <li>All <span class="italic">prime numbers</span> should have a red background.</li>
       </ul>
     </div>
