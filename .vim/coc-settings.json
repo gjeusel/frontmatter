@@ -1,0 +1,19 @@
+{
+  "diagnostic.messageTarget": "float",
+  "tailwindCSS.headwind.removeDuplicates": true,
+  "tailwindCSS.headwind.runOnSave": true,
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.headwind.defaultSortOrder": [],
+  "vetur.useWorkspaceDependencies": true,
+  "vetur.completion.autoImport": true,
+  "prettier.eslintIntegration": true,
+  "prettier.disableSuccessMessage": true,
+  "tsserver.enable": true,
+  "eslint.enable": true,
+  "eslint.quiet": false,
+  "eslint.packageManager": "npm",
+  "eslint.filetypes": ["javascript", "typescript", "vue"],
+  "tslint.enable": true,
+  "tslint.alwaysShowRuleFailuresAsWarnings": true,
+  "tslint.autoFixOnSave": false
+}
