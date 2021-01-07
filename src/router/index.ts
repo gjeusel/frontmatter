@@ -1,5 +1,8 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 
+
+// https://skillvalue.com/fr/exercices-de-programmation/
+
 const routes: RouteRecordRaw[] = [
   // SideBar
   { path: "/", redirect: { name: "DigitColor" }, meta: { sidebar: false } },
