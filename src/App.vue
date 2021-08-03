@@ -14,22 +14,6 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup name="App" lang="ts">
 import SideBar from "@/components/SideBar.vue";
-
-export default defineComponent({
-  name: "App",
-  components: {
-    SideBar,
-  },
-});
 </script>
-
-<style lang="ts">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-</style>

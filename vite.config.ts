@@ -1,18 +1,15 @@
-const pathAliasMap = {
-  "@/": "/src/",
-};
+import path from "path"
+import Vue from "@vitejs/plugin-vue"
+import { defineConfig } from "vite"
 
-export default {
-  resolvers: [
-    {
-      alias(path: string) {
-        for (const [slug, res] of Object.entries(pathAliasMap)) {
-          if (path.startsWith(slug)) {
-            return path.replace(slug, res);
-          }
-        }
-      },
+export default defineConfig({
+  resolve: {
+    alias: {
+      "@": `${path.resolve(__dirname, "src")}/`,
     },
-  ],
-  optimizeDeps: {},
-};
+  },
+  plugins: [Vue()],
+  optimizeDeps: {
+    include: ["vue"],
+  },
+})
