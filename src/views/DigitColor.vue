@@ -14,6 +14,7 @@
     <div class="mt-6 h-8 flex flex-row space-x-4 justify-center">
       <button class="btn" @click="randomize">Randomize</button>
       <button class="btn" @click="shuffle">Shuffle</button>
+      <button class="btn" @click="invade = !invade">invade</button>
     </div>
   </div>
   <div class="flex justify-center">
@@ -22,7 +23,7 @@
         v-for="(number, i) in bag"
         :key="i"
         class="p-2 font-semibold rounded-full"
-        :class="conditionalStyle(number)"
+        :class="conditionalStyle(i, number)"
       >
         {{ number }}
       </span>
@@ -34,6 +35,15 @@
 import { defineComponent, ref, Ref } from "vue";
 import _ from "lodash";
 
+const pixels = [[0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0]];
+pixels.push([0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0]);
+pixels.push([0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]);
+pixels.push([0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0]);
+pixels.push([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]);
+pixels.push([1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0]);
+pixels.push([1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0]);
+pixels.push([0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0]);
+
 export default defineComponent({
   name: "DigitColor",
   props: {},
@@ -43,11 +53,30 @@ export default defineComponent({
     const minNumber = 0;
     const maxNumber = 100;
 
+    const invade = ref(false);
+
     let bag: Ref<number[]> = ref(Array.from({ length: nNumbers }, (_, i) => i + 1));
 
-    function conditionalStyle(n: number) {
-      if (n === 4) {
-        return "bg-red-200";
+    function conditionalStyle(i: number, n: number) {
+      if (invade.value) {
+        const ncols = 12;
+        const nlines = pixels.length;
+        const x = Math.floor(i / ncols);
+        const y = i % 12;
+
+        if (x < nlines) {
+          console.log(x, y);
+          if (pixels[x][y] === 1) {
+            return "bg-gray-700";
+          }
+        }
+      }
+
+      if (Number.isInteger(Math.sqrt(n))) {
+        return "bg-blue-200";
+      }
+      if (n % 2 == 0) {
+        return "bg-yellow-200";
       }
       return "bg-green-100";
     }
@@ -60,7 +89,7 @@ export default defineComponent({
       bag.value = Array.from({ length: nNumbers }, () => _.random(minNumber, maxNumber, false));
     }
 
-    return { bag, conditionalStyle, randomize, shuffle };
+    return { bag, invade, conditionalStyle, randomize, shuffle };
   },
 });
 </script>
